@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Break 2026 - Dreams Royal Beach Punta Cana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(
+                to bottom,
+                #0b1f3a 0%,
+                #1a4a7c 25%,
+                #0a6480 50%,
+                #0d9dbb 72%,
+                #3dd5f3 88%,
+                #8ee8f5 100%
+            );
+        }
+
+        /* === SUN === */
+        .sun {
+            position: fixed;
+            top: 55px;
+            right: 12%;
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff5a0, #FFD700 40%, #FF8C00);
+            box-shadow:
+                0 0 40px 15px rgba(255, 215, 0, 0.65),
+                0 0 100px 35px rgba(255, 165, 0, 0.3);
+            animation: sunGlow 3.5s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .sun::after {
+            content: '';
+            position: absolute;
+            top: -35px; left: -35px; right: -35px; bottom: -35px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.12), transparent 65%);
+            animation: sunGlow 3.5s ease-in-out infinite reverse;
+        }
+
+        @keyframes sunGlow {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px 15px rgba(255,215,0,0.65), 0 0 100px 35px rgba(255,165,0,0.3); }
+            50%       { transform: scale(1.06); box-shadow: 0 0 60px 25px rgba(255,215,0,0.85), 0 0 150px 55px rgba(255,165,0,0.4); }
+        }
+
+        /* === STARS === */
+        .stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50%       { opacity: 0.9;  transform: scale(1.3); }
+        }
+
+        /* === CLOUDS === */
+        .cloud-wrap {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 40%;
+            pointer-events: none;
+            z-index: 3;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            animation: driftCloud linear infinite;
+        }
+
+        @keyframes driftCloud {
+            from { transform: translateX(-250px); }
+            to   { transform: translateX(110vw); }
+        }
+
+        /* === PALM TREES === */
+        .palm {
+            position: fixed;
+            bottom: 110px;
+            z-index: 6;
+            pointer-events: none;
+        }
+        .palm-left  { left: -15px; }
+        .palm-right { right: -15px; transform: scaleX(-1); }
+
+        /* === ANIMATED WAVES === */
+        .waves-wrapper {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 170px;
+            z-index: 7;
+            pointer-events: none;
+        }
+
+        .wave-svg {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            left: 0;
+        }
+
+        .wave1 { animation: waveDrift 8s  linear infinite; }
+        .wave2 { animation: waveDrift 13s linear infinite reverse; opacity: 0.55; }
+        .wave3 { animation: waveDrift 6s  linear infinite;          opacity: 0.4;  bottom: 30px !important; }
+
+        @keyframes waveDrift {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* === BUBBLES === */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.4);
+            animation: bubbleRise linear infinite;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes bubbleRise {
+            0%   { transform: translateY(110vh) scale(0); opacity: 0; }
+            8%   { opacity: 0.8; }
+            90%  { opacity: 0.3; }
+            100% { transform: translateY(-15vh) scale(1); opacity: 0; }
+        }
+
+        /* === PAGE LAYOUT === */
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 16px 210px;
+            position: relative;
+            z-index: 10;
+            gap: 18px;
+        }
+
+        /* === HEADER === */
+        .emoji-banner {
+            font-size: clamp(1.8em, 4.5vw, 2.8em);
+            display: block;
+            text-align: center;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+            animation: bannerSway 4.5s ease-in-out infinite;
+        }
+
+        @keyframes bannerSway {
+            0%, 100% { transform: rotate(-3deg) scale(1);    }
+            50%       { transform: rotate(3deg)  scale(1.04); }
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2.6em, 9vw, 5.5em);
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 3px 3px 0 rgba(0,60,110,0.45), 0 0 50px rgba(255,255,255,0.25);
+            line-height: 1.1;
+        }
+
+        .subtitle-line {
+            text-align: center;
+            font-size: clamp(0.9em, 2.4vw, 1.25em);
+            color: rgba(255,255,255,0.92);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        .hotel-tag {
+            text-align: center;
+            font-size: clamp(0.85em, 2.2vw, 1.1em);
+            color: #FFD700;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        /* === GLASS CARD === */
+        .glass {
+            background: rgba(255,255,255,0.13);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            border: 1.5px solid rgba(255,255,255,0.32);
+            border-radius: 26px;
+            box-shadow: 0 8px 36px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.28);
+            width: 100%;
+            max-width: 680px;
+        }
+
+        /* === COUNTDOWN === */
+        .countdown-card {
+            padding: 30px 36px;
+        }
+
+        .cd-header {
+            text-align: center;
+            font-size: 0.8em;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.82);
+            margin-bottom: 22px;
+        }
+
+        .cd-units {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .unit {
+            background: rgba(255,255,255,0.17);
+            border: 1px solid rgba(255,255,255,0.38);
+            border-radius: 18px;
+            padding: 16px 14px 12px;
+            min-width: 108px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+
+        .unit::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: rgba(255,255,255,0.06);
+            border-radius: 18px 18px 0 0;
+        }
+
+        .unit:hover { transform: translateY(-5px); }
+
+        .unit-number {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(2.4em, 7vw, 3.8em);
+            color: #ffffff;
+            display: block;
+            line-height: 1;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.35);
+        }
+
+        .unit-label {
+            display: block;
+            font-size: 0.68em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.72);
+            margin-top: 7px;
+        }
+
+        .colon {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.6em;
+            color: rgba(255,255,255,0.7);
+            margin-top: -6px;
+            user-select: none;
+            animation: colonBlink 1s step-end infinite;
+        }
+
+        @keyframes colonBlink {
+            0%, 100% { opacity: 1;   }
+            50%       { opacity: 0.15; }
+        }
+
+        .depart-note {
+            text-align: center;
+            margin-top: 20px;
+            color: rgba(255,255,255,0.78);
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .depart-note strong {
+            color: #FFD700;
+            font-weight: 900;
+        }
+
+        .arrived-msg {
+            font-family: 'Pacifico', cursive;
+            font-size: 2em;
+            color: #FFD700;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            display: none;
+            padding: 10px 0;
+        }
+
+        /* === HOTEL CARD === */
+        .hotel-card {
+            padding: 24px 30px;
+            text-align: center;
+        }
+
+        .hotel-name {
+            font-size: clamp(1.05em, 3.2vw, 1.45em);
+            font-weight: 900;
+            color: #FFD700;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+        }
+
+        .hotel-sub {
+            font-size: 0.88em;
+            color: rgba(255,255,255,0.78);
+            margin-bottom: 18px;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            justify-content: center;
+        }
+
+        .amenity {
+            background: rgba(255,255,255,0.17);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            padding: 7px 16px;
+            font-size: 0.82em;
+            font-weight: 700;
+            color: rgba(255,255,255,0.95);
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .amenity:hover {
+            background: rgba(255,255,255,0.32);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+        }
+
+        .amenity:active { transform: translateY(0); }
+
+        /* === PHOTO MODAL === */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-box {
+            background: rgba(10, 30, 60, 0.92);
+            border: 1.5px solid rgba(255,255,255,0.25);
+            border-radius: 22px;
+            overflow: hidden;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            transform: scale(0.88) translateY(20px);
+            transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .modal-overlay.open .modal-box {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-img-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #0a1e3a;
+            overflow: hidden;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-img.loading { opacity: 0; }
+
+        .modal-spinner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            animation: spinnerSpin 1s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spinnerSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .modal-footer {
+            padding: 16px 22px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .modal-caption {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.05em;
+            font-weight: 800;
+            color: #FFD700;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-sub {
+            font-size: 0.78em;
+            color: rgba(255,255,255,0.55);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .modal-close {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            cursor: pointer;
+            color: rgba(255,255,255,0.85);
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover { background: rgba(255,255,255,0.25); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 580px) {
+            .countdown-card { padding: 22px 14px; }
+            .cd-units       { gap: 5px; }
+            .unit           { min-width: 68px; padding: 12px 8px 10px; }
+            .colon          { font-size: 1.8em; }
+            .hotel-card     { padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sun -->
+<div class="sun"></div>
+
+<!-- Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Clouds -->
+<div class="cloud-wrap" id="cloudWrap"></div>
+
+<!-- Palm trees -->
+<div class="palm palm-left">
+    <svg width="155" height="310" viewBox="0 0 155 310" xmlns="http://www.w3.org/2000/svg">
+        <path d="M72,310 Q68,245 64,175 Q60,125 67,78 Q70,56 78,35" stroke="#6D4C41" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M78,35 Q50,18 20,28 Q10,32 8,42 Q28,30 58,42" fill="#2E7D32"/>
+        <path d="M78,35 Q105,12 135,20 Q145,25 146,36 Q128,22 98,38" fill="#388E3C"/>
+        <path d="M78,35 Q68,5  50,-10 Q40,-14 34,-6  Q52,5  72,28" fill="#1B5E20"/>
+        <path d="M78,35 Q88,5  106,-8 Q115,-12 120,-4 Q104,8  80,30" fill="#43A047"/>
+        <path d="M78,35 Q48,30  22,48 Q14,56  18,66 Q32,48  68,42" fill="#2E7D32"/>
+        <path d="M78,35 Q108,30 134,50 Q142,58 138,68 Q124,50  84,42" fill="#388E3C"/>
+        <circle cx="74" cy="46" r="8"  fill="#795548"/>
+        <circle cx="84" cy="50" r="7"  fill="#6D4C41"/>
+        <circle cx="70" cy="55" r="6"  fill="#8D6E63"/>
+    </svg>
+</div>
+
+<div class="palm palm-right">
+    <svg width="155" height="310" viewBox="0 0 155 310" xmlns="http://www.w3.org/2000/svg">
+        <path d="M72,310 Q68,245 64,175 Q60,125 67,78 Q70,56 78,35" stroke="#6D4C41" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <path d="M78,35 Q50,18 20,28 Q10,32 8,42 Q28,30 58,42" fill="#2E7D32"/>
+        <path d="M78,35 Q105,12 135,20 Q145,25 146,36 Q128,22 98,38" fill="#388E3C"/>
+        <path d="M78,35 Q68,5  50,-10 Q40,-14 34,-6  Q52,5  72,28" fill="#1B5E20"/>
+        <path d="M78,35 Q88,5  106,-8 Q115,-12 120,-4 Q104,8  80,30" fill="#43A047"/>
+        <path d="M78,35 Q48,30  22,48 Q14,56  18,66 Q32,48  68,42" fill="#2E7D32"/>
+        <path d="M78,35 Q108,30 134,50 Q142,58 138,68 Q124,50  84,42" fill="#388E3C"/>
+        <circle cx="74" cy="46" r="8"  fill="#795548"/>
+        <circle cx="84" cy="50" r="7"  fill="#6D4C41"/>
+        <circle cx="70" cy="55" r="6"  fill="#8D6E63"/>
+    </svg>
+</div>
+
+<!-- Animated waves -->
+<div class="waves-wrapper">
+    <svg class="wave-svg wave3" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,45 C240,75 480,15 720,45 C960,75 1200,15 1440,45 L1440,100 L0,100 Z" fill="rgba(255,255,255,0.38)"/>
+        <path d="M1440,45 C1200,75 960,15 720,45 C480,75 240,15 0,45 L0,100 L1440,100 Z" fill="rgba(255,255,255,0.38)"/>
+    </svg>
+    <svg class="wave-svg wave2" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 C200,30 400,80 600,60 C800,40 1000,80 1200,60 C1320,50 1390,42 1440,60 L1440,100 L0,100 Z" fill="rgba(255,255,255,0.45)"/>
+        <path d="M1440,60 C1240,30 1040,80 840,60 C640,40 440,80 240,60 C120,50 50,42 0,60 L0,100 L1440,100 Z" fill="rgba(255,255,255,0.45)"/>
+    </svg>
+    <svg class="wave-svg wave1" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,50 C180,80 360,20 540,50 C720,80 900,20 1080,50 C1260,80 1440,20 1440,50 L1440,100 L0,100 Z" fill="rgba(255,255,255,0.65)"/>
+        <path d="M1440,50 C1260,80 1080,20 900,50 C720,80 540,20 360,50 C180,80 0,20 0,50 L0,100 L1440,100 Z" fill="rgba(255,255,255,0.65)"/>
+    </svg>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="page-wrapper">
+
+    <span class="emoji-banner">🌴 🏖️ 🌊 🐠 🦀 ☀️ 🍹 🌴</span>
+
+    <h1>Spring Break 2026</h1>
+    <p class="subtitle-line">Punta Cana &bull; Dominican Republic</p>
+    <p class="hotel-tag">✈️ Dreams Royal Beach Punta Cana ✈️</p>
+
+    <!-- Countdown Timer -->
+    <div class="glass countdown-card">
+        <div class="cd-header">⏳ &nbsp; Countdown to Paradise &nbsp; ⏳</div>
+        <div class="cd-units" id="cdUnits">
+            <div class="unit">
+                <span class="unit-number" id="days">--</span>
+                <span class="unit-label">Days</span>
+            </div>
+            <div class="colon">:</div>
+            <div class="unit">
+                <span class="unit-number" id="hours">--</span>
+                <span class="unit-label">Hours</span>
+            </div>
+            <div class="colon">:</div>
+            <div class="unit">
+                <span class="unit-number" id="minutes">--</span>
+                <span class="unit-label">Mins</span>
+            </div>
+            <div class="colon">:</div>
+            <div class="unit">
+                <span class="unit-number" id="seconds">--</span>
+                <span class="unit-label">Secs</span>
+            </div>
+        </div>
+        <div class="arrived-msg" id="arrivedMsg">🌴 We Made It to Paradise! 🌴</div>
+        <p class="depart-note">
+            Wheels up: <strong>Sunday, March 22, 2026 at Noon ✈️</strong>
+        </p>
+    </div>
+
+    <!-- Hotel Info -->
+    <div class="glass hotel-card">
+        <div class="hotel-name">🌟 Dreams Royal Beach Punta Cana 🌟</div>
+        <div class="hotel-sub">All-Inclusive Resort &nbsp;·&nbsp; Bávaro Beach, Punta Cana, Dominican Republic</div>
+        <div class="amenities">
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-34.jpg" data-caption="🏊 Swim-Up Bar">🏊 Swim-Up Bar</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-31.jpg" data-caption="🍹 Unlimited Drinks">🍹 Unlimited Drinks</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-29.jpg" data-caption="🏖️ Private Beach">🏖️ Private Beach</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-28.jpg" data-caption="🌊 Crystal Waters">🌊 Crystal Waters</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-37.jpg" data-caption="🐠 Snorkeling">🐠 Snorkeling</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-38.jpg" data-caption="🎵 Nightly Entertainment">🎵 Nightly Entertainment</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/restaurant/oceana.jpg" data-caption="🍽️ World-Class Dining">🍽️ World-Class Dining</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/rooms/deluxe-pool-view.jpg" data-caption="🛁 Luxury Suites">🛁 Luxury Suites</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-33.jpg" data-caption="🌅 Stunning Sunsets">🌅 Stunning Sunsets</span>
+            <span class="amenity" data-img="https://www.royalbeachpuntacana.com/images/slides/slide-4.jpg" data-caption="🎣 Water Sports">🎣 Water Sports</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Photo Modal -->
+<div class="modal-overlay" id="photoModal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+        <div class="modal-img-wrap">
+            <div class="modal-spinner" id="modalSpinner">🌀</div>
+            <img class="modal-img loading" id="modalImg" src="" alt="">
+        </div>
+        <div class="modal-footer">
+            <div>
+                <div class="modal-caption" id="modalCaption"></div>
+                <div class="modal-sub">Dreams Royal Beach Punta Cana</div>
+            </div>
+            <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ── COUNTDOWN ──────────────────────────────────────────
+    const target = new Date('2026-03-22T12:00:00');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+        const diff = target - Date.now();
+        if (diff <= 0) {
+            document.getElementById('cdUnits').style.display = 'none';
+            document.getElementById('arrivedMsg').style.display = 'block';
+            return;
+        }
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000)  / 60000);
+        const s = Math.floor((diff % 60000)     / 1000);
+        document.getElementById('days').textContent    = pad(d);
+        document.getElementById('hours').textContent   = pad(h);
+        document.getElementById('minutes').textContent = pad(m);
+        document.getElementById('seconds').textContent = pad(s);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+
+    // ── STARS ──────────────────────────────────────────────
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 70; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const sz = Math.random() * 2.5 + 0.8;
+        s.style.cssText = `
+            width:${sz}px; height:${sz}px;
+            top:${Math.random() * 42}%;
+            left:${Math.random() * 100}%;
+            animation-delay:${(Math.random() * 5).toFixed(2)}s;
+            animation-duration:${(2 + Math.random() * 4).toFixed(2)}s;
+        `;
+        starsEl.appendChild(s);
+    }
+
+    // ── CLOUDS ─────────────────────────────────────────────
+    const cloudData = [
+        { w: 190, h: 48, top: '7%',  dur: 65, delay: -18, bumps: [{x:35,y:-32,r:80,rh:70},{x:95,y:-22,r:65,rh:55}] },
+        { w: 140, h: 36, top: '15%', dur: 85, delay: -42, bumps: [{x:25,y:-28,r:60,rh:55},{x:75,y:-18,r:50,rh:44}] },
+        { w: 110, h: 30, top: '22%', dur: 50, delay: -8,  bumps: [{x:20,y:-22,r:48,rh:44},{x:60,y:-14,r:40,rh:36}] },
+    ];
+    const wrap = document.getElementById('cloudWrap');
+    cloudData.forEach(c => {
+        const el = document.createElement('div');
+        el.className = 'cloud';
+        el.style.cssText = `
+            top:${c.top};
+            width:${c.w}px; height:${c.h}px;
+            animation-duration:${c.dur}s;
+            animation-delay:${c.delay}s;
+        `;
+        el.innerHTML = `<svg width="${c.w}" height="${c.h + 50}" viewBox="0 0 ${c.w} ${c.h + 50}" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="50" width="${c.w}" height="${c.h}" rx="${c.h / 2}" fill="rgba(255,255,255,0.82)"/>
+            ${c.bumps.map(b => `<ellipse cx="${b.x}" cy="50" rx="${b.r / 2}" ry="${b.rh / 2}" fill="rgba(255,255,255,0.82)"/>`).join('')}
+        </svg>`;
+        wrap.appendChild(el);
+    });
+
+    // ── BUBBLES ────────────────────────────────────────────
+    function spawnBubble() {
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        const sz = Math.random() * 22 + 5;
+        b.style.cssText = `
+            width:${sz}px; height:${sz}px;
+            left:${(Math.random() * 100).toFixed(1)}%;
+            animation-duration:${(9 + Math.random() * 12).toFixed(1)}s;
+            animation-delay:${(Math.random() * 2).toFixed(2)}s;
+        `;
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 22000);
+    }
+
+    for (let i = 0; i < 6; i++) spawnBubble();
+    setInterval(spawnBubble, 1800);
+
+    // ── PHOTO MODAL ────────────────────────────────────────
+    const modal      = document.getElementById('photoModal');
+    const modalImg   = document.getElementById('modalImg');
+    const modalCap   = document.getElementById('modalCaption');
+    const modalClose = document.getElementById('modalClose');
+    const spinner    = document.getElementById('modalSpinner');
+
+    function openModal(src, caption) {
+        modalCap.textContent = caption;
+        spinner.style.display = 'flex';
+        modalImg.classList.add('loading');
+        modalImg.src = '';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        const img = new Image();
+        img.onload = () => {
+            modalImg.src = src;
+            modalImg.classList.remove('loading');
+            spinner.style.display = 'none';
+        };
+        img.onerror = () => {
+            spinner.textContent = '🖼️';
+            spinner.style.animation = 'none';
+            spinner.style.display = 'flex';
+        };
+        img.src = src;
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+        setTimeout(() => { modalImg.src = ''; }, 300);
+    }
+
+    // Open on chip click
+    document.querySelectorAll('.amenity[data-img]').forEach(chip => {
+        chip.addEventListener('click', () => {
+            openModal(chip.dataset.img, chip.dataset.caption);
+        });
+    });
+
+    // Close on button or backdrop click
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    // Close on Escape key
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
